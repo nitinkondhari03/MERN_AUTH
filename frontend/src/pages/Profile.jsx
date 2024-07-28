@@ -63,7 +63,7 @@ export default function Profile() {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
-      const res = await fetch(`http://localhost:3000/api/user/update/${currentUser._id}`, {
+      const res = await fetch(`https://mern-auth-efjw.onrender.com/api/user/update/${currentUser._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -82,26 +82,26 @@ export default function Profile() {
     }
   };
 
-  const handleDeleteAccount = async () => {
-    try {
-      dispatch(deleteUserStart());
-      const res = await fetch(`http://localhost:3000/api/user/delete/${currentUser._id}`, {
-        method: 'DELETE',
-      });
-      const data = await res.json();
-      if (data.success === false) {
-        dispatch(deleteUserFailure(data));
-        return;
-      }
-      dispatch(deleteUserSuccess(data));
-    } catch (error) {
-      dispatch(deleteUserFailure(error));
-    }
-  };
+  // const handleDeleteAccount = async () => {
+  //   try {
+  //     dispatch(deleteUserStart());
+  //     const res = await fetch(`https://mern-auth-efjw.onrender.com/api/user/delete/${currentUser._id}`, {
+  //       method: 'DELETE',
+  //     });
+  //     const data = await res.json();
+  //     if (data.success === false) {
+  //       dispatch(deleteUserFailure(data));
+  //       return;
+  //     }
+  //     dispatch(deleteUserSuccess(data));
+  //   } catch (error) {
+  //     dispatch(deleteUserFailure(error));
+  //   }
+  // };
 
   const handleSignOut = async () => {
     try {
-      await fetch('http://localhost:3000/api/auth/signout');
+      await fetch('https://mern-auth-efjw.onrender.com/api/auth/signout');
       dispatch(signOut())
     } catch (error) {
       console.log(error);
@@ -171,12 +171,12 @@ export default function Profile() {
         </button>
       </form>
       <div className='flex justify-between mt-5'>
-        <span
+        {/* <span
           onClick={handleDeleteAccount}
           className='text-red-700 cursor-pointer'
         >
           Delete Account
-        </span>
+        </span> */}
         <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>
           Sign out
         </span>
